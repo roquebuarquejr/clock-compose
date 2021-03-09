@@ -17,20 +17,34 @@ package com.example.androiddevchallenge
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<ClockViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                val state by viewModel.state.observeAsState(ClockState.Stopped())
+                ClockScreen(
+                    state = state,
+                    onOneMinClicked = viewModel::minutePress,
+                    onTenSecClicked = viewModel::secondDozenPress,
+                    onOneSecClicked = viewModel::secondUnitPress,
+                    onStartTimer = viewModel::startTimer,
+                    onStopTimer = viewModel::stopTimer
+                )
             }
         }
     }
@@ -40,7 +54,9 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        Text(
+            text = "Ready... Set... GO!"
+        )
     }
 }
 
