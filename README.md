@@ -13,8 +13,7 @@ This is a small compose app test which plays a little bit with states in the new
 ## :bulb: Motivation and Context
 <!--- Optionally point readers to interesting parts of your submission. -->
 <!--- What are you especially proud of? -->
-The main motivation was about learning something new, because I had a very busy week but
-I knew that if I take the challenge I would learn smth.
+The main motivation was about learning something new.
 
 
 ## :camera_flash: Screenshots
